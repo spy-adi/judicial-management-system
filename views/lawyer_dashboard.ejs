@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
+            integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+        <link type="text/css" rel="stylesheet" href="/css/dashboard_style.css">
+    </head>
+
+    <body class="home">
+        <h1><i class="fa fa-dashboard" style="font-size:48px;color:black"></i>
+            <b><%= f_name %>'s Dashboard</b></h1>
+        <div class="container-fluid display-table">
+
+                <div class="row display-table-row">
+                    <div class="" id="navigation">
+                        <div class="logo">
+                        </div>
+                        <div class="sidebar">
+                            <div class="navi">
+                                <ul class="nav-menu">
+                                    <li>
+                                        <form action="/lawyer/dashboard" method="GET">
+                                            <button type="submit">
+                                                Dashboard
+                                            </button>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form action="/lawyer/profile" method="GET">
+                                            <button type="submit">
+                                                Profile
+                                            </button>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form action="" method="GET">
+                                            <button type="submit">
+                                                Notifications
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="logout">
+                                <form action="/logout" method="GET">
+                                    <button type="submit">
+                                        Log Out
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+
+                <%- include('./partials/messages.ejs') %>
+
+                <caption>
+                    <div align="left" style="font-size:200%;"><b>Active Cases:</b></div>
+                </caption>
+
+                <table>
+                    <tr style="width:100%">
+                        <th>Case Type</th>
+                        <th>Case Name</th>
+                        <th>Description</th>
+                        <th>Case No</th>
+                        <th>Hearing Date</th>
+                        <th>Details</th>
+                    </tr>
+
+                    <tbody>
+                        <% cases.forEach
+                        (
+                            (case1) => 
+                            { 
+                                if(case1.isResolved == 'N')
+                                { %>
+                                    <tr>
+                                        <td><%= case1.case_type %></td>
+                                        <td><%= case1.case_name %></td>
+                                        <td><%= case1.case_descp %></td>
+                                        <td><%= case1.court_case_no %></td>
+                                        <td><%= case1.h_date %></td>
+                                        <td><form action="/courtregistrar/display_case_details/<%= case1._id %>" method="GET"><button type="submit">Further Details</button></form></td>
+                                    </tr>
+                                <% }
+                            }
+                        ); %>
+                    </tbody>
+                </table>
+                <br>
+                
+                <caption>
+                    <div align="left" style="font-size:200%;"><b>Resolved Cases:</b></div>
+                </caption>
+
+                <table>
+                    <tr style="width:100%">
+                        <th>Case Type</th>
+                        <th>Case Name</th>
+                        <th>Description</th>
+                        <th>Case No</th>
+                        <th>Hearing Date</th>
+                        <th>Details</th>
+                    </tr>
+                    
+                    <tbody>
+                        <% cases.forEach
+                        (
+                            (case1) => 
+                            { 
+                                if(case1.isResolved == 'Y')
+                                { %>
+                                    <tr>
+                                        <td><%= case1.case_type %></td>
+                                        <td><%= case1.case_name %></td>
+                                        <td><%= case1.case_descp %></td>
+                                        <td><%= case1.court_case_no %></td>
+                                        <td><%= case1.h_date %></td>
+                                        <td><form action="/courtregistrar/display_case_details/<%= case1._id %>" method="GET"><button type="submit">Further Details</button></form></td>
+                                    </tr>
+                                <% }
+                            }
+                        ); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

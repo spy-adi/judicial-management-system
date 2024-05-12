@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="/css/add_case_pg1_style.css">
+<div class="container">  
+  <form id="addcase" action="/courtregistrar/add_case_pg1" method="POST">
+    <h3>Update the case</h3>
+    <h4>Please fill up the following details to add a case</h4>
+    <fieldset>
+      Case name     
+      <input placeholder="Give the case a short name" name="case_name" type="text" value="<%= case_name %>" disabled autofocus>
+    </fieldset>
+    <fieldset>
+      Court Case No     
+      <input placeholder="Give the case a short name" name="case_name" type="text" value="<%= court_case_no %>" disabled autofocus>
+    </fieldset>
+    <fieldset>
+      Hearing Date    
+      <input placeholder="Give the case a short name" name="hearing_date" type="text" value="<%= h_date %>" disabled autofocus>
+    </fieldset>
+    <fieldset>
+      Case description 
+      <textarea placeholder="Enter the case details here...." name="case_descp" disabled><%= case_descp %></textarea>
+    </fieldset>
+
+    
+    
+    <fieldset>
+      Hearing Outcome
+      <textarea placeholder="Enter the outcome here" name="hearing_outcome" ></textarea>
+    </fieldset>
+    <fieldset>
+      Is today final hearing?
+      <select type="is_final_hearing" name="is_final_hearing">
+        <option value="y">Yes</option>
+        <option value="n" selected>No</option>
+      </select>
+      </fieldset>
+    <fieldset>
+      Next Hearing Date (If today is not final hearing)
+      <input placeholder="What is going to be the next hearing date? If NA select todays date itself." name="next_hearing_date" type="Date" autofocus>
+    </fieldset>
+    
+    <fieldset>
+      Final result of the case(If today is final hearing)
+      <textarea placeholder="Enter the final judgement here" name="final_judgement" ></textarea>
+    </fieldset>
+    <fieldset>
+      <button name="submit" type="submit" id="addcase-submit" >Proceed</button>
+    </fieldset>
+  </form>
+  <!-- <form id="addcase" action="/courtregistrar/dashboard" method="GET">
+    <fieldset>
+      <button type="submit">Back</button>
+    </fieldset>
+  </form> -->
+</div>
+</html>
